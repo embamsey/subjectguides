@@ -1,13 +1,19 @@
 <?php
 // $Id: node.tpl.php,v 1.7 2007/08/07 08:39:36 goba Exp $
-?>
-  <div class="node<?php if ($sticky) { print " sticky"; } ?><?php if (!$status) { print " node-unpublished"; } ?>">
-
-
-<?php
 
   global $language;
   global $base_url;
+
+  $node_has_content = false;
+
+  $node_class = 'node';
+  if ($sticky) {
+     $node_class .= ' sticky';
+  }
+  if (!$status) {
+     $node_class .= ' node-unpublished';
+  }
+  $node_out = "<div class='node $node_class'>";
 
   $page_type = 'a-z';
   $title_text = 'Databases A-Z';
@@ -40,7 +46,7 @@
   }
   
   if ($page_type != 'guides') {
-    print '<h1>' . $title_text . '</h1>';
+    $node_out .= '<h1>' . render($title_text) . '</h1>';
   }
 
   /*  We want all nodes that are:
@@ -80,9 +86,7 @@
     </p>
 HERE;
 
-?>
-<ul>
-<?php
+  $node_out .= "<ul>";
 
   // Place anchors roughly 1/5 of the way through the page
   $anchors = array('A', 'D', 'H', 'M', 'S', 'Z');
@@ -106,6 +110,10 @@ HERE;
     $cur_db_new = $cur_db_node->field_new['und'][0]['value'];
     $cur_db_expires = $cur_db_node->field_database_expiration_date['und'][0]['value2'];
 
+    // Skip the database unless it has a name & URL
+    if (!($cur_db_title && $cur_db_url)) {
+        continue;
+    }
     // Skip the database if it is expired
     if ($cur_db_expires && (strtotime($cur_db_expires) < strtotime(date('Y-m-d')))) {
        continue;
@@ -140,19 +148,30 @@ HERE;
     if (in_array(librarian, $GLOBALS['user']->roles) || in_array(administrator, $GLOBALS['user']->roles)) {
        $db_edit = '&nbsp;<a class="db_edit_link" href="' . $base_url . '/node/' . $nid . '/edit">(Edit)</a>';
        $db_edit_list = '<p><a class="db_edit_link" href="' . $base_url . '/node/' . $node->nid . '/edit">Edit database list</a></p>';
+       // Print empty nodes for librarians
+       $node_has_content = true;
     }
 
     // Define an anchor, perhaps
     if ($page_type == 'a-z' && substr($cur_db_title, 0, 1) == $init_ltr) {
       $list_id = " id='list_$init_ltr'";
       $init_ltr = array_shift($anchors);
-      print $jump_list;
+      $node_out .= $jump_list;
     }
 
-?>
-    <li<?php print $list_id; ?>><a href="<?php print $cur_db_url; ?>"><?php print render($cur_db_title); ?></a> <?php print render($db_display); ?><?php print render($db_edit); ?> </li>
-    <?php print render($desc);
+    $li_entry = "<li$list_id><a href='$cur_db_url'>" . render($cur_db_title);
+    $li_entry .= "</a> " . render($db_display) . render($db_edit) . " </li>";
+    $li_entry .= render($desc);
+
+    $node_out .= $li_entry;
+
+    // If we've made it this far, we have content
+    $node_has_content = true;
   }
-  print ($db_edit_list);
+  $node_out .= $db_edit_list;
+  $node_out .= "</ul></div>";
+
+  if ($node_has_content) {
+    print($node_out);
+  }
 ?>
-</div>
