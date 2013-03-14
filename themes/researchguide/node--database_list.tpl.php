@@ -104,6 +104,11 @@ HERE;
     // Grab the URL & description
     $cur_db_title = $cur_db_node->title;
     $cur_db_url = $cur_db_node->field_database_url['und'][0]['url'];
+
+    // Most people won't enter ampersands properly in URLs, so fix it for them
+    if (!stristr($cur_db_url, '&amp;')) {
+        $cur_db_url = str_replace('&', '&amp;', $cur_db_url);
+    }
     $cur_db_desc = $cur_db_node->field_database_description['und'][0]['value'];
     $cur_db_multi = $cur_db_node->field_multidisciplinary['und'][0]['value'];
     $cur_db_proxy = $cur_db_node->field_proxied['und'][0]['value'];
