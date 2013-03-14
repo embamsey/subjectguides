@@ -142,11 +142,11 @@ HERE;
 
     if ($cur_db_desc) {
       $desc = '<p name="dbdesc_' . $nid . '" style="display:none;">';
-      $desc .= '<span width="25%"><b>' . $desc_header . '</b></span>';
+      $desc .= '<span style="width: 25%;"><b>' . $desc_header . '</b></span>';
       $desc .= '<span>' . $cur_db_desc . '</span>';
       $desc .= '</p>';
 
-      $db_display = "(<span onclick='jQuery(\"[name=\\\"dbdesc_$nid\\\"]\").toggle();' style='font-weight: bold'>?</span>)";
+      $db_display = "<span onclick='jQuery(\"[name=\\\"dbdesc_$nid\\\"]\").toggle();' style='font-weight: bold'>(?)</span>";
     }
 
     // Check current user's roles and show an edit button if admin or librarian
@@ -165,8 +165,8 @@ HERE;
     }
 
     $li_entry = "<li$list_id><a href='$cur_db_url'>" . render($cur_db_title);
-    $li_entry .= "</a> " . render($db_display) . render($db_edit) . " </li>";
-    $li_entry .= render($desc);
+    $li_entry .= "</a> " . render($db_display) . render($db_edit);
+    $li_entry .= render($desc) . "</li>";
 
     $node_out .= $li_entry;
 
