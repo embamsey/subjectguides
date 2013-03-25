@@ -102,18 +102,14 @@ HERE;
     $cur_db_node = node_load($nid);
 
     // Grab the URL & description
-    $cur_db_title = $cur_db_node->title;
-    $cur_db_url = $cur_db_node->field_database_url['und'][0]['url'];
-    // Most people won't enter ampersands properly in URLs, so fix it for them
-    if (!stristr($cur_db_url, '&amp;')) {
-        $cur_db_url = str_replace('&', '&amp;', $cur_db_url);
-    }
-
-    $cur_db_desc = $cur_db_node->field_database_description['und'][0]['value'];
+    $cur_db_title = htmlspecialchars($cur_db_node->title);
+    $cur_db_url = htmlspecialchars($cur_db_node->field_database_url['und'][0]['url']);
+    $cur_db_desc = htmlspecialchars($cur_db_node->field_database_description['und'][0]['value']);
     $cur_db_multi = $cur_db_node->field_multidisciplinary['und'][0]['value'];
     $cur_db_proxy = $cur_db_node->field_proxied['und'][0]['value'];
     $cur_db_new = $cur_db_node->field_new['und'][0]['value'];
     $cur_db_expires = $cur_db_node->field_database_expiration_date['und'][0]['value2'];
+    $cur_db_refworks = htmlspecialchars($cur_db_node->field_refworks['und'][0]['value']);
 
     // Skip the database unless it has a name & URL
     if (!($cur_db_title && $cur_db_url)) {
@@ -139,6 +135,7 @@ HERE;
     $db_display = '';
     $db_edit = '';
     $desc = '';
+    $db_refworks = '';
 
     if ($cur_db_desc) {
       $desc = '<p name="dbdesc_' . $nid . '" style="display:none;">';
@@ -164,8 +161,13 @@ HERE;
       $node_out .= $jump_list;
     }
 
+    // Check for link to RefWorks
+    if ($cur_db_refworks) {
+      $db_refworks = '<a href="' . $cur_db_refworks . '">(RefWorks)</a>';
+    }
+
     $li_entry = "<li$list_id><a href='$cur_db_url'>" . render($cur_db_title);
-    $li_entry .= "</a> " . render($db_display) . render($db_edit);
+    $li_entry .= "</a> " . render($db_display) . render($db_refworks) . render($db_edit);
     $li_entry .= render($desc) . "</li>";
 
     $node_out .= $li_entry;
