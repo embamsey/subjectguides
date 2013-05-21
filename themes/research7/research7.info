@@ -1,0 +1,29 @@
+name = Research7
+description = A simple one-column, tableless, fluid width administration theme.
+version = VERSION
+core = 7.x
+base_theme = seven
+stylesheets[all][] = style.css
+stylesheets[all][] = nice_menus_researchguide.css
+stylesheets[all][] = css/redmond/jquery-ui-1.8.1.custom.css
+settings[shortcut_module_link] = 1
+scripts[] = js/jquery-ui-1.8.1.custom.js
+scripts[] = development-bundle/ui/jquery.ui.core.js
+scripts[] = development-bundle/ui/jquery.ui.widget.js
+scripts[] = jquery.ui.tabs.min.js
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[content] = Content
+regions[footer] = Footer
+regions[sidebar_first] = Left sidebar
+regions[sidebar_second] = Right sidebar
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions_hidden[] = sidebar_first
+
+; Information added by drupal.org packaging script on 2013-02-20
+version = "7.20"
+project = "drupal"
+datestamp = "1361393684"
+
