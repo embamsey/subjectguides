@@ -109,6 +109,8 @@ HERE;
     $cur_db_proxy = $cur_db_node->field_proxied['und'][0]['value'];
     $cur_db_new = $cur_db_node->field_new['und'][0]['value'];
     $cur_db_expires = $cur_db_node->field_database_expiration_date['und'][0]['value2'];
+    $cur_db_refworks = htmlspecialchars($cur_db_node->field_refworks['und'][0]['value']);
+    $cur_db_notes = htmlspecialchars($cur_db_node->field_notes['und'][0]['value']);
 
     // Skip the database unless it has a name & URL
     if (!($cur_db_title && $cur_db_url)) {
@@ -134,6 +136,8 @@ HERE;
     $db_display = '';
     $db_edit = '';
     $desc = '';
+    $db_refworks = '';
+    $db_notes = '';
 
     if ($cur_db_desc) {
       $desc = '<p name="dbdesc_' . $nid . '" style="display:none;">';
@@ -142,6 +146,18 @@ HERE;
       $desc .= '</p>';
 
       $db_display = "<span onclick='jQuery(\"[name=\\\"dbdesc_$nid\\\"]\").toggle();' style='font-weight: bold'>(?)</span>";
+    }
+
+    if ($cur_db_notes) {
+      $db_notes = '<p>';
+      $db_notes .= '<span style="width: 25%;"><b>' . $note_header . '</b></span>';
+      $db_notes .= '<span>' . $cur_db_notes . '</span>';
+      $db_notes .= '</p>';
+    }
+
+    // Check for link to RefWorks
+    if ($cur_db_refworks) {
+      $db_refworks = '<a href="' . $cur_db_refworks . '"> (RefWorks)</a>';
     }
 
     // Check current user's roles and show an edit button if admin or librarian
@@ -160,7 +176,8 @@ HERE;
     }
 
     $li_entry = "<li$list_id><a href='$cur_db_url'>" . render($cur_db_title);
-    $li_entry .= "</a> " . render($db_display) . render($db_edit);
+    $li_entry .= "</a> " . render($db_display) . render($db_edit) . render($db_refworks);
+    $li_entry .= render($db_notes);
     $li_entry .= render($desc) . "</li>";
 
     $node_out .= $li_entry;
