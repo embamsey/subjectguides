@@ -112,10 +112,16 @@ HERE;
     $cur_db_refworks = htmlspecialchars($cur_db_node->field_refworks['und'][0]['value']);
     $cur_db_notes = htmlspecialchars($cur_db_node->field_notes['und'][0]['value']);
 
+    // Skip the database if it is not published
+    if (!$cur_db_node->status) {
+        continue;
+    }
+
     // Skip the database unless it has a name & URL
     if (!($cur_db_title && $cur_db_url)) {
         continue;
     }
+
     // Skip the database if it is expired
     if ($cur_db_expires && (strtotime($cur_db_expires) < strtotime(date('Y-m-d')))) {
        continue;
