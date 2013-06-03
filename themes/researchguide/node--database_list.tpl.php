@@ -114,7 +114,11 @@ HERE;
 
     // Skip the database if it is not published
     if (!$cur_db_node->status) {
-        continue;
+        if (in_array(librarian, $GLOBALS['user']->roles) || in_array(administrator, $GLOBALS['user']->roles)) {
+            $cur_db_title .= ' <strong style="color:red">- NOT PUBLISHED!</strong>';
+        } else {
+            continue;
+        }
     }
 
     // Skip the database unless it has a name & URL
