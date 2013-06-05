@@ -77,6 +77,7 @@
 .ui-state-focus .ui-icon,
 .ui-state-active .ui-icon {
   background-image: url(images/ui-icons-454545-256x240.png);
+  color: #1D2A54;   
 }
 .ui-state-highlight .ui-icon {
   background-image: url(images/ui-icons-800000-256x240.png);
