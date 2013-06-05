@@ -1,18 +1,27 @@
-
 /**
  * Generic elements.
  */
 body {
+  margin: 0;
+  padding: 0;
   color: #000;
   background: #fff;
-  font: normal 81.3%/1.538em "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  font: 76% Verdana, Arial, Helvetica, sans-serif;
 }
 a {
-  color: #0074BD;
+  font-weight: bold;
   text-decoration: none;
+  color: #39C;
 }
 a:hover {
+  color: #39C;
   text-decoration: underline;
+}
+a:visited {
+  color: #39C;
+}
+a:link {
+  color: #39C;
 }
 hr {
   margin: 0;
@@ -30,27 +39,23 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: bold;
-  margin: 10px 0;
+  margin-bottom: 0.5em;
 }
 h1 {
-  font-size: 1.538em;
+  font-size: 1.3em;
 }
 h2 {
-  font-size: 1.385em;
+  font-size: 1.2em;
 }
-h3 {
-  font-size: 1.231em;
-}
-h4 {
-  font-size: 1.154em;
-}
+h3,
+h4,
 h5,
 h6 {
-  font-size: 1.077em;
-}
+  font-size: 1.1em;
+} 
 p {
-  margin: 1em 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.9em;
 }
 dl {
   margin: 0 0 20px;
@@ -101,7 +106,6 @@ acronym {
 ul,
 .block ul,
 .item-list ul {
-  list-style-type: disc;
   list-style-image: none;
   margin: 0.25em 0 0.25em 1.5em; /* LTR */
 }
@@ -257,11 +261,10 @@ pre {
  * Tabs.
  */
 ul.primary {
-  float: right; /* LTR */
+  width: 100%;
+  float: left; /* LTR */
   border-bottom: none;
-  text-transform: uppercase;
-  font-size: 0.923em;
-  height: 2.60em;
+  font-size: 0.80em;
   margin: 0;
   padding-top: 0;
 }
@@ -278,7 +281,7 @@ ul.primary li a:hover,
 ul.primary li.active a {
   display: block;
   float: left; /* LTR */
-  height: 2.60em;
+  height: 1.5em;
   line-height: 2.60em;
   padding: 0 18px 8px;
   background-color: #a6a7a2;
@@ -340,10 +343,52 @@ ul.secondary li.active a.active {
   color: #fff;
   background: #666;
 }
-#content {
-  clear: left;
+#content, #header {
+  width: 100%;
+  padding: 1em;
 }
-
+#header {
+  background-color: #fff;
+  height: 115px;
+}
+#footer {
+  background-color: #eee;
+  padding: 1em;
+  font-size: 0.8em;
+}
+#logo {
+  vertical-align: middle;
+  border: 0;
+}
+#logo img {
+  float: left; /* LTR */
+  padding: 0 1em;
+  margin-top: 1em;
+  border: 0;
+}
+.site-name {
+  margin: 1em 0 0 0;
+  padding: 0;
+  font-size: 1.85em;
+  display: inline;
+  position: relative;
+  top: 1.35em;
+}
+.site-name a:link, .site-name a:visited {
+  color: #1D2A54;
+}
+.site-name a:hover {
+  color: #1D2A54;
+  text-decoration: none;
+}
+.site-slogan {
+  font-size: 1em;
+  color: #1D2A54;
+  display: block;
+  margin: 0;
+  font-style: italic;
+  font-weight: bold;
+}
 /**
  * Page layout.
  */
@@ -756,6 +801,9 @@ div.admin-panel h3 {
   margin: 0;
   padding-bottom: 9px;
 }
+div.node {
+  padding-top: 1em;
+}
 
 /* admin/appearance */
 #system-themes-page h2 {
@@ -986,4 +1034,58 @@ div.add-or-remove-shortcuts {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
+}
+
+/* Additional miscellaneous styles 
+ */
+.block-nice_menus {
+  display: inline;
+  float: left;
+  margin: 1.3em 0;
+  padding: 0;
+  width: 100%;
+  background-color: #1D2A54;
+}
+
+div.block-locale, div.block-locale * {
+  display: inline;
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+
+div.block-nice_menus h2 div {
+  float: right;
+  position: inherit;
+}
+
+.block-nice_menus { display: inline; float: left; margin: 1.3em 0; padding: 0; width: 100%; background-color: #1D2A54; }
+.block-nice_menus div { float: left; position: relative; display: inline; }
+.block-nice_menus ul { position: relative; }
+
+li a.active {
+  color: #1d2a54;
+}
+a.db_edit_link {
+  color: #aaa;
+}
+a.db_edit_link:hover {
+  color: #39C;
+}
+
+div.content ul {
+  margin-right: 3em;
+  margin-left: 1em;
+}
+
+#block-locale-language {
+  padding-bottom: 1.5em;
+}
+
+li.en.first.active {
+  display: none;
+}
+
+li.fr.last.active {
+  display: none;
 }
