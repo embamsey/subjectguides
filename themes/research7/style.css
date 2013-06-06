@@ -343,8 +343,7 @@ ul.secondary li.active a.active {
   color: #fff;
   background: #666;
 }
-#content, #header {
-  width: 100%;
+#content {
   padding: 1em;
 }
 #header {
