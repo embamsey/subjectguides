@@ -53,6 +53,15 @@
   <?php
     if ($messages) { print $messages; }
     print render($page['help']);
+    if ($action_links):
+  ?>
+    <ul class="action-links">
+  <?php
+    print render($action_links);
+  ?>
+    </ul>
+  <?php
+    endif;
     print render($page['content']);
     print $feed_icons;
   ?>
