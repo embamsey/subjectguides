@@ -596,6 +596,8 @@ fieldset {
   padding: 2.5em 0 0 0; /* LTR */
   position: relative;
   margin: 1em 0;
+  display: inline;
+  width: 100%;
 }
 fieldset .fieldset-legend {
   margin-top: 0.5em;
