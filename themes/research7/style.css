@@ -127,7 +127,7 @@ ol {
 }
 .item-list ul li.collapsed,
 ul.menu li.collapsed {
-  list-style-image:url(../../misc/menu-collapsed.png);
+/*  list-style-image:url(../../misc/menu-collapsed.png);*/
   list-style-type:disc;
 }
 .item-list ul li.expanded,
