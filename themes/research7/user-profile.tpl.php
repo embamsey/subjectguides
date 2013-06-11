@@ -10,7 +10,6 @@ if ($user->uid != null && arg(0) == 'user') {
 ?>
 
 <div class="owned_content">
-  <h1><a href="<?php print $base_url; ?>/research/databases/">A-Z List of Databases</a></h1>
   <h1>My 60 Most Recent Guides:</h1>
 <?php
   $output = '';

@@ -1089,3 +1089,6 @@ li.en.first.active {
 li.fr.last.active {
   display: none;
 }
+li {
+  list-style-type: disc;
+}
